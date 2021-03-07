@@ -1,0 +1,28 @@
+<!Doctype html>
+<html>
+  <head>
+    <script>
+      var a=[];
+      a.push(1);
+      a.push(5);
+      a.push(4);
+      a.push(3);
+      a.unshift(2);
+      a.unshift(20);
+      //Insertion sort
+      var k=1;
+      while(k<a.length)
+      {
+    var temp=a[k];
+    j=k-1;
+    while(j>=0&&temp<a[j])
+    {
+    a[j+1]=a[j];
+    j--;
+    }
+    a[j+1]=temp;
+    k++;
+      }
+   document.write(a);
+      </script>
+    </head>

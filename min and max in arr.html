@@ -1,0 +1,38 @@
+<!Doctype html>
+<html>
+  <head>
+    <script>
+  var a=[];
+  a.push(1);
+  a.push(2);
+  a.unshift(5);
+  a.push(6);
+  a.push(4);
+  var min=999;
+  var i=0;
+  while(i<a.length)
+  {
+  if (a[i]<min)
+  {
+  min=a[i];
+  }
+  i++;
+  }
+  document.write(min,"<br>");
+var max=-999;
+var q=0;
+while(q<a.length)
+{
+if(a[q]>max)
+{
+max=a[q];
+}
+q++;
+}
+document.write(max,"<br>");
+        </script>
+    </head>
+    </body>
+    <h1>Find min and max in an array in javascript</h1>
+    </body>
+    </html>

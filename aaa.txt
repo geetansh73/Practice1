@@ -1,0 +1,119 @@
+class BMICalculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bmi:"N/A",
+      bmiClass:"N/A"
+    };
+  	// code here
+  this.handleWeightChange=this.handleWeightChange.bind(this);
+    this.handleHeightChange=this.handleHeightChange.bind(this);
+this.computeBMI=this.computeBMI.bind(this);
+    this.getBMI=this.getBMI.bind(this);
+  }
+  handleWeightChange(weightValue) {
+    // code here
+    this.setState({weight:weightValue});
+
+  }
+
+  handleHeightChange(heightValue) {
+    // code here
+    this.setState({height:heightValue});
+   
+  }
+
+  computeBMI() {
+  	let bmiValue = (this.state.weight / this.state.height) / this.state.height;
+  	bmiValue=bmiValue.toFixed(2);
+    this.setState({ bmi : bmiValue });
+	// code here
+    let bmiClass=this.getBMI(bmiValue);
+    this.setState({bmiClass:bmiClass});
+  }
+    
+
+  getBMI(bmi) {
+  	// code here
+    if (bmi<18.5)
+      {
+        return "Underweight";
+      }
+    if (bmi>=18.5 && bmi<24.9)
+      {
+        return "Normal weight";
+      }
+    if (bmi>=25 && bmi<29.9)
+      {
+        return "Overweight";
+      }
+    if (bmi>=30)
+      {
+        return "Obsesity";
+      }
+  }
+
+  render() {
+      return(
+          <div>
+              <div className="row">
+                <TextInput id="height" label="Height" placeholder="Enter height in meters" onChange={this.handleHeightChange} />
+              </div>
+              <div className="row">
+                  <TextInput id="weight" label="Weight" placeholder="Enter weight in kg" onChange={this.handleWeightChange} />
+              </div>
+              <div className="row">
+                  <Button label="SUBMIT" onClick={this.computeBMI} />
+              </div>
+              <div className="row">
+                  <Display bmi={this.state.bmi} bmiClass={this.state.bmiClass}/>
+              </div>
+          </div>
+        
+      )
+  }
+}
+
+class TextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value : '' };
+    // code here
+    this.handleChange=this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const inputValue = event.target.value;
+    // code here
+    this.setState({value:inputValue})
+    this.props.onChange(inputValue);
+  }
+
+  render() {
+      return(
+          <div>
+              <label>{this.props.label}</label>
+              <input type="number" value={this.state.value} placeholder={this.props.placeholder} onChange={this.handleChange} />
+          </div>
+      );
+  }
+}
+
+class Button extends React.Component {
+  render() {
+      return(
+          <button onClick={this.props.onClick}>{this.props.label}</button>
+      );
+  }
+}
+
+class Display extends React.Component {
+  render() {
+      return(
+          <div>
+            <h3 id="bmi">BMI = {this.props.bmi}</h3>
+            <h3 id="bmi-class">BMI Class = {this.props.bmiClass}</h3>
+          </div>
+      );
+  }
+}
